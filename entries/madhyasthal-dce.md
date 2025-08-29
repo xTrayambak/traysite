@@ -21,12 +21,12 @@ Mostly because I'm lazy. Also, the bytecode itself is a two-address code, so the
 This is the very first optimization pass that was ever introduced into Madhyasthal. I call it a "naive dead code eliminator" because it was made using basic logical inference, and not any tried-and-tested methods. Again, I have no formal education in compilers (yet, mostly because I'm still in school), so cut me some slack. :^)
 
 ### Step 1: Collect all defined ("allocated") registers
-[Just a tiny code snippet showing this phase's logic](https://files.catbox.moe/buq5xy.jpg)
+![Just a tiny code snippet showing this phase's logic](https://files.catbox.moe/buq5xy.jpg)
 
 This is a very simple step. It basically tries to find all instructions that can define/allocate a value at a virtual register index.
 
 ### Step 2: Collect all used registers
-[Yet another code snippet. This time, it can't fit everything. Sad times indeed.](https://files.catbox.moe/erowqp.jpg)
+![Yet another code snippet. This time, it can't fit everything. Sad times indeed.](https://files.catbox.moe/erowqp.jpg)
 
 This is where the real action takes place. The code is too large to fit in one screenshot, so I'll just explain it as thoroughly as I can:
 
@@ -49,7 +49,7 @@ A scan-ahead will cause the callee to prematurely terminate and append the scan'
 A similar approach is used to `Copy` instructions.
 
 ### Step 3: Rewrite the instruction list
-[Yet another code snippet, yay.](https://files.catbox.moe/y62abl.jpg)
+![Yet another code snippet, yay.](https://files.catbox.moe/y62abl.jpg)
 
 Now that we know which registers are dead, we can iterate over all instructions. If an instruction take in any registers marked as dead, we can safely eliminate it.
 
@@ -57,10 +57,10 @@ Now that we know which registers are dead, we can iterate over all instructions.
 Voila, you can now eliminate unused expressions fairly well. The best part? This is only 150 lines of code.
 
 The below image shows you how the `thing()` function was fully optimized out, since nothing in it was used.
-[The aforementioned image](https://files.catbox.moe/977sp8.jpg)
+![The aforementioned image](https://files.catbox.moe/977sp8.jpg)
 
 However, if one of the inputs is used, it is marked as alive and code for it is generated, as seen in the image below.
-[The aforementioned image](https://files.catbox.moe/1urevh.jpg)
+![The aforementioned image](https://files.catbox.moe/1urevh.jpg)
 
 ## Closing Notes
 This algorithm was fairly fun to create. If you have any recommendations, feel free to let me know. I'd love to improve this further into a lean fully-fledged DCE pass. I generally don't check my e-mail, though.
