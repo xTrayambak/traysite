@@ -1,6 +1,6 @@
 {
 	"title": "Tray's Ramblings",
-	"port": 8080,
+	"port": 80,
 	"opengraph": {
 		"title": "Tray's Ramblings",
 		"description": "Compilers, interpreters, and regret.",
