@@ -6,7 +6,7 @@ date = 2025-10-06
 
 I've been working on my JavaScript engine, [Bali](https://github.com/ferus-web/bali) for over a year at this point.
 
-Through all of its releases, the codebase has slowly grone from a thousand lines of Nim to over ~14K lines of Nim. However, that isn't the main point here.
+Through all of its releases, the codebase has slowly grown from a thousand lines of Nim to over ~14K lines of Nim. However, that isn't the main point here.
 
 Ever since Bali became a fairly "heavyweight" Nim project, the limitations of Nim's tooling began to show up.
 
